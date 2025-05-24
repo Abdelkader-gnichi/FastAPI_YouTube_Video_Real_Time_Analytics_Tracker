@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 from typing import Union
 # from api.db.session import init_db
 from fastapi import FastAPI
-# from api.events import router as events_router
+from api.videos_events.routing import router as yt_videos_events_router
 from fastapi.middleware.cors import CORSMiddleware
 
 @asynccontextmanager
@@ -22,7 +22,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# app.include_router(events_router, prefix='/api/events')
+app.include_router(yt_videos_events_router, prefix='/api/video_events')
 
 @app.get('/')
 def greeting():
