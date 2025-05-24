@@ -22,7 +22,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(yt_videos_events_router, prefix='/api/video_events')
+app.include_router(yt_videos_events_router, prefix='/api/video-events')
 
 @app.get('/')
 def greeting():

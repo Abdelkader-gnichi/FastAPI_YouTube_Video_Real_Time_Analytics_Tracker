@@ -4,10 +4,10 @@ from sqlmodel import SQLModel
 class YouTubeVideoData(SQLModel, table=False):
     title: str = ""
 
-class YouTubePlayerState(BaseModel):
-    is_ready: bool
-    video_data: YouTubeVideoData
-    current_time: int = 0
-    video_state_label: str = "CUED"
-    video_state_value: int = -10
-    
+class YouTubePlayerState(BaseModel, table=False):
+    isReady: bool
+    video_id: str
+    videoData: YouTubeVideoData
+    currentTime: float | int = 0.0
+    videoStateLabel: str = "CUED"
+    videoStateValue: float | int = -10
