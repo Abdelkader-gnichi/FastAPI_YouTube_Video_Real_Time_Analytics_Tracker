@@ -21,13 +21,11 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
+COPY requirements.txt /tmp/requirements.txt
+
 COPY ./src /app/
 
-# Copy dependency files
-COPY pyproject.toml uv.lock ./
-
-# Sync dependencies
-RUN uv sync --no-dev # --frozen
+RUN uv pip install -r /tmp/requirements.txt
 
 COPY  ./boot/docker-run.sh /opt/run.sh
 
