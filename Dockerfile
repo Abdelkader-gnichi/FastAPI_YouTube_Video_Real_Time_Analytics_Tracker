@@ -16,9 +16,11 @@ ENV PATH="/root/.local/bin:$PATH"
 
 
 COPY ./pyproject.toml /opt/pyproject.toml
+COPY ./pylock.toml /opt/pylock.toml
+COPY ./uv.lock /opt/uv.lock
 
 RUN cd /opt && \
-    uv sync
+    uv sync 
 
 ################################### FINAL STAGE ####################################
 FROM python:3.13.3-slim-bullseye
