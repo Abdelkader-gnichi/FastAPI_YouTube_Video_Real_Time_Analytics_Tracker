@@ -5,8 +5,8 @@ services:
       context: .
       dockerfile: Dockerfile
       # environment:
-        #  -PORT=8002
-        #  -DATABASE_URL=${DATABASE_URL}
+      #  -PORT=8002
+      #  -DATABASE_URL=${DATABASE_URL}
     env_file:
       - .env.compose
     ports:
@@ -21,12 +21,15 @@ services:
         - action: rebuild
           path: requirements.txt
         - action: rebuild
-          path: docker-compose.yml
+          path: pyproject.toml
+        - action: rebuild
+          path: pylock.toml
+        - action: rebuild
+          path: docker-compose.yml   
     depends_on:
       yt_timescale_pg_db:
         condition: service_healthy
-  
-  
+
   yt_timescale_pg_db:
     image: timescale/timescaledb:latest-pg17
     environment:
@@ -44,7 +47,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-
 
 volumes:
   yt_timescale_db_data:
